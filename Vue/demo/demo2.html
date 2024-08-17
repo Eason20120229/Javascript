@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        <h2>
+            {{web.url}}
+        </h2>
+        <h3>
+            {{web.user}}
+        </h3>
+        <button @click="edit">edit to baidu</button>
+        <!-- <button v-on:click="edit">edit to baidu</button> -->
+        <hr/>
+        Press Enter
+        <input @keyup.enter="add(40, 60)"/>
+    </div>
+    <script type="module">
+        import {createApp, reactive, ref} from "./vue.esm-browser.js"
+        createApp({
+            setup(){
+                const web = reactive({
+                    url: "www.luogu.com.cn",
+                    user: 0
+                })
+                
+                const edit = () => {
+                    web.url = "www.baidu.com"
+                }
+
+                const add = (a, b) => {
+                    web.user += a + b;
+                }
+
+                return{
+                    msg:"success",
+                    web,
+                    edit,
+                    add
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
